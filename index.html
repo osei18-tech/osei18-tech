@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leslie Osei | Personal Website</title>
+  <meta name="description" content="Personal website of Leslie Osei, a Business Economics student interested in finance, data analysis, and technology." />
+  <style>
+    :root{
+      --bg:#0f172a;
+      --bg-soft:#111827;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --accent:#2563eb;
+      --accent-2:#0ea5e9;
+      --light:#f8fafc;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(14,165,233,.18), transparent 25%),
+        radial-gradient(circle at top right, rgba(37,99,235,.18), transparent 25%),
+        linear-gradient(180deg, #eff6ff 0%, #f8fafc 30%, #eef2ff 100%);
+      line-height:1.6;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.82);
+      border-bottom:1px solid rgba(226,232,240,.8);
+    }
+
+    .nav-inner, .container{
+      width:min(1100px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+    }
+
+    .brand{
+      font-weight:800;
+      letter-spacing:.2px;
+      color:var(--bg);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      font-size:.95rem;
+    }
+
+    .hero{
+      padding:72px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .panel{
+      background:rgba(255,255,255,0.88);
+      border:1px solid rgba(255,255,255,.6);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-card{
+      padding:42px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -40px -50px auto;
+      width:180px;
+      height:180px;
+      background:linear-gradient(135deg, rgba(37,99,235,.16), rgba(14,165,233,.12));
+      border-radius:50%;
+      filter: blur(10px);
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:#dbeafe;
+      color:#1d4ed8;
+      font-weight:700;
+      font-size:.85rem;
+      margin-bottom:14px;
+    }
+
+    h1{
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height:1.05;
+      margin:0 0 16px;
+      letter-spacing:-1px;
+    }
+
+    .lead{
+      font-size:1.08rem;
+      color:var(--muted);
+      max-width:60ch;
+      margin:0 0 22px;
+    }
+
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:white;
+      box-shadow:0 12px 25px rgba(37,99,235,.25);
+    }
+
+    .btn-primary:hover{
+      text-decoration:none;
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary{
+      background:white;
+      color:var(--bg);
+      border-color:var(--line);
+    }
+
+    .btn-secondary:hover{
+      text-decoration:none;
+      background:#f8fafc;
+    }
+
+    .profile-card{
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .avatar{
+      width:110px;
+      height:110px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      font-size:2rem;
+      font-weight:800;
+      color:white;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:0 12px 24px rgba(37,99,235,.25);
+      margin-bottom:18px;
+    }
+
+    .role{
+      font-size:1.1rem;
+      font-weight:700;
+      margin:0 0 6px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .quick-list{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .quick-item{
+      padding:12px 14px;
+      background:var(--light);
+      border:1px solid var(--line);
+      border-radius:16px;
+      font-size:.96rem;
+    }
+
+    section{
+      padding:20px 0;
+    }
+
+    .section-title{
+      font-size:1.6rem;
+      margin:0 0 16px;
+      letter-spacing:-.4px;
+    }
+
+    .section-copy{
+      color:var(--muted);
+      margin:0 0 20px;
+      max-width:70ch;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:22px;
+    }
+
+    .card{
+      padding:26px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.15rem;
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      background:#eff6ff;
+      color:#1d4ed8;
+      border:1px solid #bfdbfe;
+      font-size:.92rem;
+      font-weight:600;
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:22px;
+    }
+
+    .project{
+      height:100%;
+    }
+
+    .project p{
+      color:var(--muted);
+      margin:0 0 12px;
+    }
+
+    .project .status{
+      display:inline-block;
+      margin-top:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#ecfeff;
+      color:#0f766e;
+      border:1px solid #bae6fd;
+      font-size:.82rem;
+      font-weight:700;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .contact-item{
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--light);
+    }
+
+    .footer{
+      padding:26px 0 40px;
+      color:var(--muted);
+      font-size:.95rem;
+      text-align:center;
+    }
+
+    @media (max-width: 900px){
+      .hero-grid,
+      .grid-2,
+      .project-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:36px;
+      }
+
+      .hero-card, .profile-card, .card{
+        padding:22px;
+      }
+
+      .nav-inner{
+        gap:14px;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Leslie Osei</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="panel hero-card">
+          <div class="eyebrow">Business Economics Student</div>
+          <h1>Hi, I'm Leslie Osei.</h1>
+          <p class="lead">
+            I am a Business Economics student with growing interests in finance, data analysis,
+            business strategy, and technology. I enjoy learning how digital tools and analytical
+            thinking can be used to solve real-world problems.
+          </p>
+          <p class="lead">
+            This website highlights who I am, the skills I am building, and the types of projects
+            I am interested in as I continue to grow academically and professionally.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:osei18@my.yorku.ca">Email Me</a>
+            <a class="btn btn-secondary" href="https://github.com/osei18-tech-" target="_blank" rel="noopener">View GitHub</a>
+          </div>
+        </div>
+
+        <aside class="panel profile-card">
+          <div>
+            <div class="avatar">LO</div>
+            <p class="role">Leslie Osei</p>
+            <p class="muted">Business Economics • Finance • Analytics • Technology</p>
+          </div>
+
+          <div class="quick-list">
+            <div class="quick-item"><strong>Email:</strong> <a href="mailto:osei18@my.yorku.ca">osei18@my.yorku.ca</a></div>
+            <div class="quick-item"><strong>Phone:</strong> <a href="tel:+14376085166">+1 (437) 608-5166</a></div>
+            <div class="quick-item"><strong>GitHub:</strong> <a href="https://github.com/osei18-tech-" target="_blank" rel="noopener">osei18-tech-</a></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="grid-2">
+        <div class="panel card">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-copy">
+            I am currently studying Business Economics and developing a stronger foundation in
+            economics, business decision-making, and analytical problem-solving. I am especially
+            interested in how finance, data, and technology connect in modern business environments.
+          </p>
+          <p class="section-copy">
+            As I continue learning, I want to build practical skills that can support careers in
+            areas such as finance, analytics, consulting, and other business-related fields.
+          </p>
+        </div>
+
+        <div class="panel card">
+          <h2 class="section-title">What I'm Building</h2>
+          <p class="section-copy">
+            Right now, I am focused on improving my academic knowledge while also learning useful
+            technical skills like website creation, digital tools, and structured communication.
+            My goal is to combine strong business understanding with hands-on technical ability.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="panel card">
+        <h2 class="section-title">Skills & Interests</h2>
+        <p class="section-copy">
+          These are some of the areas I am currently studying and continuing to improve.
+        </p>
+        <div class="tag-list">
+          <span class="tag">Business Economics</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Finance</span>
+          <span class="tag">HTML & Web Basics</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Research</span>
+          <span class="tag">Communication</span>
+          <span class="tag">Technology</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-copy">
+        These are sample portfolio sections that show the kind of work and academic development I am
+        focused on right now.
+      </p>
+
+      <div class="project-grid">
+        <article class="panel card project">
+          <h3>Personal Website Project</h3>
+          <p>
+            Built and customized a personal website using HTML, then prepared it for online hosting
+            through GitHub Pages as part of a web development assignment.
+          </p>
+          <span class="status">Completed</span>
+        </article>
+
+        <article class="panel card project">
+          <h3>Coursework in Business Economics</h3>
+          <p>
+            Developing understanding in economics, business concepts, and analytical thinking through
+            university coursework and applied assignments.
+          </p>
+          <span class="status">In Progress</span>
+        </article>
+
+        <article class="panel card project">
+          <h3>Exploring Data & Finance</h3>
+          <p>
+            Building interest in using numbers, trends, and economic reasoning to better understand
+            financial and business decisions.
+          </p>
+          <span class="status">Growing Interest</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-grid">
+        <div class="panel card">
+          <h2 class="section-title">Contact Me</h2>
+          <p class="section-copy">
+            Feel free to reach out for academic, professional, or networking opportunities.
+          </p>
+          <div class="contact-list">
+            <div class="contact-item"><strong>Email:</strong> <a href="mailto:osei18@my.yorku.ca">osei18@my.yorku.ca</a></div>
+            <div class="contact-item"><strong>Phone:</strong> <a href="tel:+14376085166">+1 (437) 608-5166</a></div>
+            <div class="contact-item"><strong>GitHub:</strong> <a href="https://github.com/osei18-tech-" target="_blank" rel="noopener">github.com/osei18-tech-</a></div>
+          </div>
+        </div>
+
+        <div class="panel card">
+          <h2 class="section-title">Quick Summary</h2>
+          <p class="section-copy">
+            I am a motivated Business Economics student interested in finance, analytics, and technology.
+            I am building both academic and practical skills that will support future growth and career development.
+          </p>
+          <a class="btn btn-primary" href="mailto:osei18@my.yorku.ca">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 Leslie Osei. Built with HTML and CSS.
+    </div>
+  </main>
+</body>
+</html>
